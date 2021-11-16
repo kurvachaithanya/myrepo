@@ -5,6 +5,7 @@ pipeline{
             steps{
                 println "cloning the code"
                 sh "ls -l"
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: 'https://github.com/kurvachaithanya/myrepo.git']]])
             }
         }
         stage("build code"){
