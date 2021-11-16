@@ -4,7 +4,8 @@ pipeline{
         stage("clone code"){
             steps{
                 println "cloning the code"
-                //sh "ls -l"
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: 'https://github.com/kurvachaithanya/boxfuse-sample-java-war-hello.git']]])
+                sh "ls -l"
             }
         }
         stage("build code"){
