@@ -18,8 +18,8 @@ pipeline{
         stage("upload artifacts"){
             steps{
                 println "uploading artifacts to s3"
-                sh "echo $BUIL_NUMBER"
-                sh "aws s3 cp target/hello-$BUILD_NUMBER.war S3://chaituart/"
+                sh "echo $BUILD_NUMBER"
+                sh "aws s3 cp target/hello-${BUILD_NUMBER}.war S3://chaituart/"
             }
         }
         stage("deploy"){
