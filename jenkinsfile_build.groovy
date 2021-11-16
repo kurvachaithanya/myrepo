@@ -4,6 +4,7 @@ pipeline{
         stage("clone code"){
             steps{
                 println "cloning the code"
+                sh "ls -l"
             }
         }
         stage("build code"){
