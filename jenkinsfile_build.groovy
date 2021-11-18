@@ -1,11 +1,18 @@
 pipeline{
     agent any
+    environment{
+        BRANCH = "${BRANCH_NAME}"
+    }
     stages{
         stage("clone code"){
             steps{
                 println "cloning the code"
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: 'https://github.com/kurvachaithanya/boxfuse-sample-java-war-hello.git']]])
+               // checkout([$class: 'GitSCM', branches: [[name: '*/{BRANCH}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: 'https://github.com/kurvachaithanya/boxfuse-sample-java-war-hello.git']]])
+                println "${BRANCH}"
                 sh "ls -l"
+                sh "ls -lart ./*"
+                git branch: "${BRANCH_NAME}",
+                url: 'https://github.com/kurvachaithanya/boxfuse-sample-java-war-hello.git'
             }
         }
         stage("build code"){
@@ -19,7 +26,7 @@ pipeline{
             steps{
                 println "uploading artifacts to s3"
                 sh "echo $BUILD_NUMBER"
-                sh "aws s3 cp target/hello-${BUILD_NUMBER}.war s3://chaituart/master/${BUILD_NUMBER}"
+                sh "aws s3 cp target/hello-${BUILD_NUMBER}.war s3://chaituart/${BRANCH}/${BUILD_NUMBER}"
             }
         }
         stage("deploy"){
