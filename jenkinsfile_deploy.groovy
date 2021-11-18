@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage("download artifacts"){
             steps{
-                println "Downloading artifacts from s3"
+                println "Downloading artifacts from S3"
                 sh "aws s3 ls"
                 sh "aws s3 ls s3://chaituart"
                 sh "aws s3 ls s3://chaituart/${BRANCH_NAME}/${BUILD_NUM}"
