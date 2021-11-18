@@ -13,7 +13,7 @@ pipeline{
                 sh "aws s3 ls"
                 sh "aws s3 ls s3://chaituart"
                 sh "aws s3 ls s3://chaituart/${BRANCH_NAME}/${BUILD_NUM}"
-                sh "aws s3 cp s3://chaituart/${BRANCH_NAME}/${BUILD_NUM}/hello-${BUILD_NUM}.war ."
+                sh "aws s3 cp s3://chaituart/${BRANCH_NAME}/${BUILD_NUM}/hello-${BUILD_NUM}.war"
             }
         }
         stage("copy artifacts"){
