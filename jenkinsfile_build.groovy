@@ -1,14 +1,13 @@
 pipeline{
     agent any
-    environment{
-        BRANCH = "${BRANCH_NAME}"
+    environment {
+        BRANCH = "${env.BRANCH_NAME}"
     }
     stages{
         stage("clone code"){
             steps{
                 println "cloning the code"
-               // checkout([$class: 'GitSCM', branches: [[name: '*/{BRANCH}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[ url: 'https://github.com/kurvachaithanya/boxfuse-sample-java-war-hello.git']]])
-                println "${BRANCH}"
+                //println "${BRANCH}"
                 sh "ls -l"
                 sh "ls -lart ./*"
                 git branch: "${BRANCH_NAME}",
