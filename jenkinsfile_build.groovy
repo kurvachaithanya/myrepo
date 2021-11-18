@@ -25,12 +25,12 @@ pipeline{
             steps{
                 println "uploading artifacts to s3"
                 sh "echo $BUILD_NUMBER"
-                sh "aws s3 cp target/hello-${BUILD_NUMBER}.war s3://chaituart/${BRANCH}/${BUILD_NUMBER}"
+                sh "aws s3 cp target/hello-${BUILD_NUMBER}.war s3://chaituart/${BRANCH}/${BUILD_NUMBER}/"
             }
         }
         stage("deploy"){
             steps{
-                println "deploy the code usin tomcat"
+                println "deploy the code using tomcat"
             }
         } 
     }
